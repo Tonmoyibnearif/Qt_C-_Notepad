@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>2825534.svg</file>
+        <file>2825532.svg</file>
+        <file>2825536.svg</file>
+        <file>2825550.svg</file>
+        <file>2825547.svg</file>
+        <file>2825551.svg</file>
+        <file>2825552.svg</file>
+    </qresource>
+</RCC>
