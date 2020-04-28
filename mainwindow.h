@@ -34,8 +34,11 @@ private slots:
 
     void on_actionRedo_triggered();
 
+    void on_actionSave_as_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QString filename;
 };
 
 #endif // MAINWINDOW_H

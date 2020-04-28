@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QFile>
+#include <QFileDialog>
+#include <QTextStream>
+#include <QMessageBox>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -18,17 +21,36 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionNew_triggered()
 {
-
+    filename="";
+    ui->textEdit->setText("");
 }
 
 void MainWindow::on_actionOpen_triggered()
 {
-
+QString filename=QFileDialog::getOpenFileName(this,"Open the file you want");
+QFile file(filename);
+if(!file.open(QFile::ReadOnly | QFile::Text)){
+    QMessageBox::warning(this,"__", "file not readable");
+    return;
+}
+QTextStream open(&file);
+QString text=open.readAll();
+ui->textEdit->setText(text);
+file.close();
 }
 
 void MainWindow::on_actionSave_triggered()
 {
-
+    QFile file(filename);
+    if(!file.open(QFile::WriteOnly | QFile::Text)){
+        QMessageBox::warning(this,"__", "file not writeable");
+        return;
+    }
+    QTextStream out(&file);
+    QString text=ui->textEdit->toPlainText();
+    out << text;
+    file.flush();
+    file.close();
 }
 
 
@@ -55,4 +77,19 @@ ui->textEdit->undo();
 void MainWindow::on_actionRedo_triggered()
 {
 ui->textEdit->redo();
+}
+
+void MainWindow::on_actionSave_as_triggered()
+{
+    QString File_name=QFileDialog::getSaveFileName(this,"Open the file you want");
+    QFile file(File_name);
+    if(!file.open(QFile::WriteOnly | QFile::Text)){
+        QMessageBox::warning(this,"__", "file not writeable");
+        return;
+    }
+    QTextStream out(&file);
+    QString text=ui->textEdit->toPlainText();
+    out << text;
+    file.flush();
+    file.close();
 }

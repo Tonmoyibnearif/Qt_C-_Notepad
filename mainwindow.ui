@@ -76,6 +76,10 @@
    <addaction name="separator"/>
    <addaction name="actionSave"/>
    <addaction name="separator"/>
+   <addaction name="separator"/>
+   <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionNew">
@@ -142,11 +146,19 @@
    </property>
   </action>
   <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/res/Downloads/2825524.svg</normaloff>:/res/Downloads/2825524.svg</iconset>
+   </property>
    <property name="text">
     <string>Redo</string>
    </property>
   </action>
   <action name="actionUndo">
+   <property name="icon">
+    <iconset>
+     <normaloff>../Downloads/2825540.svg</normaloff>../Downloads/2825540.svg</iconset>
+   </property>
    <property name="text">
     <string>Undo</string>
    </property>
